@@ -1,0 +1,10 @@
+[Unit]
+Description=Paperless Celery beat
+Requires=redis.service
+
+[Service]
+WorkingDirectory=/opt/paperless/src
+ExecStart=uv run -- celery --app paperless beat --loglevel INFO
+
+[Install]
+WantedBy=multi-user.target

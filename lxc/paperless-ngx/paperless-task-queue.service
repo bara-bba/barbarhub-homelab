@@ -1,0 +1,11 @@
+[Unit]
+Description=Paperless Celery Workers
+Requires=redis.service
+After=postgresql.service
+
+[Service]
+WorkingDirectory=/opt/paperless/src
+ExecStart=uv run -- celery --app paperless worker --loglevel INFO
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=Paperless consumer
+Requires=redis.service
+
+[Service]
+WorkingDirectory=/opt/paperless/src
+ExecStartPre=/bin/sleep 2
+ExecStart=uv run -- python manage.py document_consumer
+
+[Install]
+WantedBy=multi-user.target

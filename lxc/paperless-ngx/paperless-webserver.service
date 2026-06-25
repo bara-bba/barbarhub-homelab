@@ -1,0 +1,15 @@
+[Unit]
+Description=Paperless webserver
+After=network.target
+Wants=network.target
+Requires=redis.service
+
+[Service]
+WorkingDirectory=/opt/paperless/src
+ExecStart=uv run -- granian --interface asgi --ws "paperless.asgi:application"
+Environment=GRANIAN_HOST=::
+Environment=GRANIAN_PORT=8000
+Environment=GRANIAN_WORKERS=1
+
+[Install]
+WantedBy=multi-user.target
